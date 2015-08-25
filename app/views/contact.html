@@ -1,3 +1,13 @@
 <p>This is the contact view.</p>
 
-<p>{{ awesomeThings }}</p>
+<p>{{awesomeThings}}</p>
+
+<div data-ng-controller="ContactCtrl">
+  {{engineer.name}} is currently: {{ engineer.currentActivity}}
+  <div>
+    Choose a new activity:
+    <select data-ng-model="engineer.currentActivity"
+            data-ng-options="act for act in activities">
+    </select>
+  </div>
+</div>
