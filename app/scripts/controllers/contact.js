@@ -18,16 +18,6 @@ angular.module('reposePlaygroundApp')
 
 angular.module('reposePlaygroundApp')
   .controller('ContactCtrl', function($scope) {
-    $scope.items = [
-        { id: 1, name: 'Foo' },
-        { id: 2, name: 'Bar' }
-    ];
-
-    $scope.selectedItem = null;
-});
-
-angular.module('reposePlaygroundApp')
-  .controller('ContactCtrl', function($scope) {
 
     $scope.engineer = {
         name: "Dani",

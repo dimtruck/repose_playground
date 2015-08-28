@@ -7,13 +7,15 @@
  * # LoginCtrl
  * Controller of the reposePlaygroundApp
  */
-angular.module('reposePlaygroundApp')
+angular
+  .module('reposePlaygroundApp')
   .controller('LoginCtrl', function ($scope, Auth, $location) {
     console.log('in login controller')
     $scope.user = {};
     $scope.errors = {};
-    
+
     $scope.login = function(form) {
+    console.log(form.$valid, form.$submitted, form.username.$error, form.password.$error)
       $scope.submitted = true;
 
       if(form.$valid) {
