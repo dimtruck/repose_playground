@@ -44,6 +44,20 @@ module.exports = function(config) {
       "test/spec/**/*.js"
     ],
 
+    reporters: ['progress','coverage','junit','dots'],
+
+    preprocessors: {
+          'app/scripts/**/*.js': ['coverage'],
+        },
+
+    ngHtml2JsPreprocessor: {
+          stripPrefix: 'client/'
+        },
+
+    ngJade2JsPreprocessor: {
+          stripPrefix: 'client/'
+        },
+
     // list of files / patterns to exclude
     exclude: [
     ],
@@ -66,8 +80,16 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+      "karma-coverage",
+      "karma-junit-reporter"
     ],
+
+    junitReporter : {
+          outputDir: '.',
+          outputFile: 'unit.xml',
+          suite: 'unit'
+        },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
@@ -85,5 +107,10 @@ module.exports = function(config) {
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
+
+    coverageReporter: {
+          type : 'html',
+          dir : 'coverage'
+        }
   });
 };
