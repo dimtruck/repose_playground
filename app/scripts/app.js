@@ -56,7 +56,7 @@ angular
       }
     };
   })
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, Repose) {
     console.log('run', $location)
     $rootScope.$on('$stateChangeStart', function (event, next) {
       //check if user is logged in
@@ -66,12 +66,21 @@ angular
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         } else if (next.landing && loggedIn) {
-          $location.path('/internal')
-          //check if repose instances exist
+          Repose.list(function (data) {
+            console.log('repose list result', data);
+            if (data && data.length > 0) {
+              $rootScope.apps = data;
+              //$location.path('/apps');
+            } else {
+              console.log('let us get started')
+              $rootScope.message = "get started";
+              $location.path('/getting_started');
+            }
+          });
         } else {
           var user = Auth.getCurrentUser();
           console.log('logged in user ', user);
-          $rootScope.raxTenant = user.raxTenant;
+          $rootScope.tenant = user.tenant;
           $rootScope.username = user.username;
         }
       });
