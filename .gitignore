@@ -8,3 +8,5 @@ dist
 /server/config/local.env.js
 coverage
 npm-debug.log
+.vagrant
+.settings
